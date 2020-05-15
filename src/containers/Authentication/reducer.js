@@ -5,7 +5,7 @@ const initState = Immutable.fromJS({
 });
 
 export default function authReducer(state = initState, action) {
-    const { payload, type } = action;
+    const { type } = action;
     
     switch(type) {
         default:
