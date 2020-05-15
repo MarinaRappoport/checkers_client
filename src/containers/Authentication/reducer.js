@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
 const initState = Immutable.fromJS({
-    
+    isLogin: false
 });
 
 export default function authReducer(state = initState, action) {

@@ -1,27 +1,33 @@
 import React from 'react';
-import { Route, Switch, HashRouter as Router } from 'react-router-dom';
+import { Switch, HashRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Authentication from '../Authentication';
 import PrivateRoute from '../../components/PrivateRoute';
 
 class App extends React.Component {
     render() {
+        const { isLogin } = this.props;
         const loginRouteConfig = {
             redirectUrl: '/auth/login',
-            redirected:false
+            redirected: !isLogin
         };
 
         return (
             <Router>
                 <Switch>
                     <PrivateRoute
-                        exact path="/" component={() => <div></div>}
-                        config={loginRouteConfig}
+                        path="/auth" component={Authentication}
+                        config={{ redirectUrl: '/', redirected: isLogin }}
                     />
-                    <Route path="/auth" component={Authentication} />
+                    <PrivateRoute path="/" component={() => <div></div>} config={loginRouteConfig} />
                 </Switch>
             </Router>
         );
     }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    isLogin: state.auth.get('isLogin')
+});
+
+export default connect(mapStateToProps)(App);
