@@ -1,19 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>Hello world</div>
-    );
-  }
-}
+import './index.css';
+import store from './store';
+import App from './containers/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
