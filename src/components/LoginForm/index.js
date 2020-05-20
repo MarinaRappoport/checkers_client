@@ -17,15 +17,15 @@ class LoginForm extends React.Component {
                 <Grid item xs={12}>
                     <FilledInput placeholder="סיסמא" type="password" />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={10}>
                     <Grid container spacing={2}>
-                        <Grid item lg={2}></Grid>
-                        <Grid item xs={10} lg={4}>
+                        <Grid item xs={12} lg={6}>
                             <Button variant="contained" color="primary" fullWidth>
                                 התחבר
                             </Button>
                         </Grid>
-                        <Grid item xs={10} lg={4}>
+                        <Grid item xs={12} lg={6}>
                             <Button variant="outlined" color="primary" fullWidth>
                                 הירשם
                             </Button>
