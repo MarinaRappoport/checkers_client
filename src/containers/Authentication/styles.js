@@ -1,9 +1,10 @@
 export default (theme) => ({
     authBox: {
         width: '100%',
-        background: theme.palette.primary.main,
-        marginTop: '1%',
-        padding: '1%',
-        borderRadius: '15px'
+        background: 'white',
+        marginTop: '3%',
+        textAlign: 'center',
+        paddingBottom: '1%',
+        borderRadius: '20px'
     }
 });
