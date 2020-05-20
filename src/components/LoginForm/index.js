@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, withStyles, FilledInput, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 
 class LoginForm extends React.Component {
@@ -26,7 +27,7 @@ class LoginForm extends React.Component {
                             </Button>
                         </Grid>
                         <Grid item xs={12} lg={6}>
-                            <Button variant="outlined" color="primary" fullWidth>
+                            <Button variant="outlined" color="primary" fullWidth component={Link} to='/auth/register'>
                                 הירשם
                             </Button>
                         </Grid>
