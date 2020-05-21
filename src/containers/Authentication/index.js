@@ -7,13 +7,19 @@ import styles from './styles';
 
 class Authentication extends React.Component {
     render() {
-        const { classes, match, isLogin } = this.props;
+        const { classes, match } = this.props;
 
         return (
             <Grid container spacing={0} direction="column" alignContent="center" justify="center">
                 <Grid item xs={10} lg={6} className={classes.authBox}>
-                    <Route exact path={`${match.path}/register`} component={RegisterForm} />
-                    <Route exact path={`${match.path}/login`} component={LoginForm} />
+                    <Route
+                        exact path={`${match.path}/register`}
+                        component={() => <RegisterForm onSubmit={vals => console.log(vals)} />}
+                    />
+                    <Route
+                        exact path={`${match.path}/login`}
+                        component={LoginForm}
+                    />
                 </Grid>
             </Grid>
         );

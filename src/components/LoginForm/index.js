@@ -5,8 +5,6 @@ import styles from './styles';
 
 class LoginForm extends React.Component {
     render() {
-        const { classes } = this.props;
-
         return (
             <Grid container spacing={1}>
                 <Grid item xs={12}>
