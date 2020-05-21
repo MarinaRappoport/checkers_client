@@ -24,13 +24,13 @@ class RegisterForm extends React.Component {
                     <Grid item xs={10}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} lg={6}>
-                                <Button variant="contained" color="primary" fullWidth>
-                                    {'התחבר'}
+                                <Button variant="contained" color="primary" fullWidth type="submit">
+                                    {'הירשם'}
                                 </Button>
                             </Grid>
                             <Grid item xs={12} lg={6}>
-                                <Button variant="outlined" color="primary" fullWidth component={Link} to='/auth/register'>
-                                    {'הירשם'}
+                                <Button variant="outlined" color="primary" fullWidth component={Link} to='/auth/login'>
+                                    {'חזרה להתחברות'}
                                 </Button>
                             </Grid>
                         </Grid>

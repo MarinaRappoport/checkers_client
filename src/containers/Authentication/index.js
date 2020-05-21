@@ -6,6 +6,16 @@ import RegisterForm from '../../components/RegisterForm';
 import styles from './styles';
 
 class Authentication extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.submitRegister = this.submitRegister.bind(this);
+    }
+
+    submitRegister(event) {
+        console.log(event);
+    }
+
     render() {
         const { classes, match } = this.props;
 
@@ -14,7 +24,7 @@ class Authentication extends React.Component {
                 <Grid item xs={10} lg={6} className={classes.authBox}>
                     <Route
                         exact path={`${match.path}/register`}
-                        component={() => <RegisterForm onSubmit={vals => console.log(vals)} />}
+                        component={() => <RegisterForm onSubmit={this.submitRegister} />}
                     />
                     <Route
                         exact path={`${match.path}/login`}
