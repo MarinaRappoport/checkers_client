@@ -20,6 +20,9 @@ class RegisterForm extends React.Component {
                     <Grid item xs={12}>
                         <Field component={FilledInput} placeholder="סיסמא" name="password" type="password" />
                     </Grid>
+                    <Grid item xs={12}>
+                        <Field component={FilledInput} placeholder="אימות סיסמה" name="password_repeat" type="password" />
+                    </Grid>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <Grid container spacing={2}>
@@ -30,7 +33,7 @@ class RegisterForm extends React.Component {
                             </Grid>
                             <Grid item xs={12} lg={6}>
                                 <Button variant="outlined" color="primary" fullWidth component={Link} to='/auth/login'>
-                                    {'חזרה להתחברות'}
+                                    {'התחבר'}
                                 </Button>
                             </Grid>
                         </Grid>
