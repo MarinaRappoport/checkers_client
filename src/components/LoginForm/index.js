@@ -10,12 +10,7 @@ class LoginForm extends React.Component {
                 <Grid item xs={12}>
                     <h1>התחבר</h1>
                 </Grid>
-                <Grid item xs={12}>
-                    <FilledInput placeholder="שם משתמש" type="text" />
-                </Grid>
-                <Grid item xs={12}>
-                    <FilledInput placeholder="סיסמא" type="password" />
-                </Grid>
+                <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={10}>
                     <Grid container spacing={2}>

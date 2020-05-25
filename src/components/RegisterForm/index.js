@@ -1,12 +1,36 @@
 import React from 'react';
-import { Grid, withStyles, FilledInput, Button } from '@material-ui/core';
+import { Grid, withStyles, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
+import TextField from '../TextField';
 import styles from './styles';
+
+
+const validate = (values) => {
+    const errors = {};
+
+    if(!values.username) {
+        errors.username = "חייב לציין שם משתמש";
+    }
+    if(!values.password) {
+        errors.password = "חייב לציין סיסמא";
+    }
+    if(!values.password_repeat) {
+        errors.password_repeat = "חייב לאמת סיסמה";
+    } else if(values.password_repeat != values.password) {
+        errors.password_repeat = "אימות סיסמה אינו תקין";
+    }
+    if(!values.name) {
+        errors.name = "יש לציין שם מלא";
+    }
+
+    return errors;
+};
+
 
 class RegisterForm extends React.Component {
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
 
         return (
             <form onSubmit={handleSubmit}>
@@ -15,21 +39,25 @@ class RegisterForm extends React.Component {
                         <h1>הירשם</h1>
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={FilledInput} placeholder="שם משתמש" name="username" type="text" />
+                        <Field component={TextField} placeholder="שם משתמש" name="username" type="text" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={FilledInput} placeholder="סיסמא" name="password" type="password" />
+                        <Field component={TextField} placeholder="סיסמא" name="password" type="password" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={FilledInput} placeholder="אימות סיסמה" name="password_repeat" type="password" />
+                        <Field component={TextField} placeholder="אימות סיסמה" name="password_repeat" type="password" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Field component={TextField} placeholder="שם מלא" name="name" type="text" />
                     </Grid>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} lg={6}>
-                                <Button variant="contained" color="primary" fullWidth type="submit">
+                                {/* <Button variant="contained" color="primary" fullWidth type="submit">
                                     {'הירשם'}
-                                </Button>
+                                </Button> */}
+                                <button type="submit" disabled={pristine || submitting}>Submit</button>
                             </Grid>
                             <Grid item xs={12} lg={6}>
                                 <Button variant="outlined" color="primary" fullWidth component={Link} to='/auth/login'>
@@ -45,6 +73,7 @@ class RegisterForm extends React.Component {
 }
 
 const formConfig = {
-    form: 'register'
+    form: 'register',
+    validate,
 };
 export default withStyles(styles)(reduxForm(formConfig)(RegisterForm));

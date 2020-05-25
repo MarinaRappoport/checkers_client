@@ -13,7 +13,7 @@ class Authentication extends React.Component {
     }
 
     submitRegister(event) {
-        console.log(event);
+        window.alert(JSON.stringify(event));
     }
 
     render() {
