@@ -1,13 +1,13 @@
 import React from 'react';
-import { FilledInput } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
-const TextField = ({
+const _TextField = ({
     label,
     input,
     meta: { touched, invalid, error },
     ...custom
 }) => (
-    <FilledInput
+    <TextField
         label={label}
         autoComplete='off'
         placeholder={label}
@@ -18,4 +18,4 @@ const TextField = ({
     />
 );
 
-export default TextField;
+export default _TextField;

@@ -39,16 +39,16 @@ class RegisterForm extends React.Component {
                         <h1>הירשם</h1>
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={TextField} placeholder="שם משתמש" name="username" type="text" />
+                        <Field component={TextField} label="שם משתמש" name="username" type="text" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={TextField} placeholder="סיסמא" name="password" type="password" />
+                        <Field component={TextField} label="סיסמא" name="password" type="password" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={TextField} placeholder="אימות סיסמה" name="password_repeat" type="password" />
+                        <Field component={TextField} label="אימות סיסמה" name="password_repeat" type="password" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Field component={TextField} placeholder="שם מלא" name="name" type="text" />
+                        <Field component={TextField} name="name" type="text" label="שם מלא" />
                     </Grid>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
