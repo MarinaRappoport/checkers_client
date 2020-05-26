@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, withStyles, FilledInput, Button } from '@material-ui/core';
+import { Grid, withStyles, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import styles from './styles';
 

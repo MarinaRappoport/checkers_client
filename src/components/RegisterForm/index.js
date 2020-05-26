@@ -17,7 +17,7 @@ const validate = (values) => {
     }
     if(!values.password_repeat) {
         errors.password_repeat = "חייב לאמת סיסמה";
-    } else if(values.password_repeat != values.password) {
+    } else if(values.password_repeat !== values.password) {
         errors.password_repeat = "אימות סיסמה אינו תקין";
     }
     if(!values.name) {
@@ -54,10 +54,9 @@ class RegisterForm extends React.Component {
                     <Grid item xs={10}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} lg={6}>
-                                {/* <Button variant="contained" color="primary" fullWidth type="submit">
+                                <Button disabled={pristine || submitting} type="submit" variant="contained" fullWidth color="primary">
                                     {'הירשם'}
-                                </Button> */}
-                                <button type="submit" disabled={pristine || submitting}>Submit</button>
+                                </Button>
                             </Grid>
                             <Grid item xs={12} lg={6}>
                                 <Button variant="outlined" color="primary" fullWidth component={Link} to='/auth/login'>
