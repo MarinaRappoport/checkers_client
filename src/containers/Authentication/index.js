@@ -1,6 +1,10 @@
 import React from 'react';
 import { Grid, withStyles } from '@material-ui/core';
 import { Route } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { SubmissionError } from 'redux-form';
+import { connect } from 'react-redux';
+import * as actions from './actions';
 import LoginForm from '../../components/LoginForm';
 import RegisterForm from '../../components/RegisterForm';
 import styles from './styles';
@@ -13,7 +17,11 @@ class Authentication extends React.Component {
     }
 
     submitRegister(event) {
-        window.alert(JSON.stringify(event));
+        try {
+            this.props.register(event);
+        } catch(err) {
+            throw new SubmissionError({username: "שם משתמש כבר קיים"});
+        }
     }
 
     render() {
@@ -36,4 +44,10 @@ class Authentication extends React.Component {
     }
 }
 
-export default withStyles(styles)(Authentication);
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch, props) => bindActionCreators({
+    register: actions.register
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Authentication));
