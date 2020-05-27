@@ -1,7 +1,7 @@
 export default (theme) => ({
     authBox: {
         width: '100%',
-        background: 'white',
+        border: '1px solid #000',
         marginTop: '3%',
         textAlign: 'center',
         paddingBottom: '1%',
