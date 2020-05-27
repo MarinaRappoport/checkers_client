@@ -1,1 +1,1 @@
-export const SET_ALL_PLAYERS = 'Lobby/SET_ALL_PLAYERS';
+export const SET_ALL_USERS = 'Lobby/SET_ALL_USERS';
