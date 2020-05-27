@@ -1,1 +1,1 @@
-export const SET_USER = 'authentication/SET_USER';
+export const SET_USER = 'Authentication/SET_USER';

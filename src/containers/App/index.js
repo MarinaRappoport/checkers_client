@@ -3,9 +3,9 @@ import { Switch, HashRouter as Router } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import styles from './styles';
-import Navbar from '../../components/Navbar';
-import Authentication from '../Authentication';
 import PrivateRoute from '../../components/PrivateRoute';
+import Authentication from '../Authentication';
+import Lobby from '../Lobby';
 
 class App extends React.Component {
     render() {
@@ -16,20 +16,17 @@ class App extends React.Component {
         };
 
         return (
-            <React.Fragment>
-                <Navbar />
-                <div className={classes.root}>
-                    <Router>
-                        <Switch>
-                            <PrivateRoute
-                                path="/auth" component={Authentication}
-                                config={{ redirectUrl: '/', redirected: isLogin }}
-                            />
-                            <PrivateRoute path="/" component={() => <div></div>} config={loginRouteConfig} />
-                        </Switch>
-                    </Router>
-                </div>
-            </React.Fragment>
+            <div className={classes.root}>
+                <Router>
+                    <Switch>
+                        <PrivateRoute
+                            path="/auth" component={Authentication}
+                            config={{ redirectUrl: '/', redirected: isLogin }}
+                        />
+                        <PrivateRoute path="/" component={Lobby} config={loginRouteConfig} />
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 }

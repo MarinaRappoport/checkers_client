@@ -1,0 +1,1 @@
+export const SET_ALL_PLAYERS = 'Lobby/SET_ALL_PLAYERS';
