@@ -7,8 +7,18 @@ import * as actions from './actions';
 import styles from './styles';
 
 class Lobby extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.onSelectUser = this.onSelectUser.bind(this);
+    }
+
     componentWillMount() {
         this.props.fetchAllPlayers();
+    }
+
+    onSelectUser(user) {
+        alert(JSON.stringify(user));
     }
 
     render() {
@@ -17,7 +27,7 @@ class Lobby extends React.Component {
         return (
             <Grid container spacing={0} direction="column" alignContent="center" justify="center">
                 <Grid item xs={10} lg={6} className={classes.lobbyBox}>
-                    <UsersLists users={allUsers} />
+                    <UsersLists users={allUsers} onSelect={this.onSelectUser} />
                 </Grid>
             </Grid>
         );

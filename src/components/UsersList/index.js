@@ -10,10 +10,10 @@ const iconClassName = (classes, available) => classNames({
     [classes.iconUnavailable]: !available
 });
 
-const UsersLists = ({ classes, users }) => (
+const UsersLists = ({ classes, users, onSelect }) => (
     <List component="nav" aria-labelledby="nested-list-subheader">
         {users.map((user, index) => (
-            <ListItem button onClick={() => alert('test')} className={classes.lobbyItem} key={index}>
+            <ListItem button onClick={() => onSelect(user.toJS())} className={classes.lobbyItem} key={index}>
                 <ListItemIcon>
                     <Person className={iconClassName(classes, user.get('available'))} />
                 </ListItemIcon>
