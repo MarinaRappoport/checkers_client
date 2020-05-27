@@ -2,12 +2,18 @@ import React from 'react';
 import { Switch, HashRouter as Router } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import styles from './styles';
+import * as authActions from '../Authentication/actions';
 import PrivateRoute from '../../components/PrivateRoute';
 import Authentication from '../Authentication';
 import Lobby from '../Lobby';
 
 class App extends React.Component {
+    componentWillMount() {
+        this.props.initLogin();
+    }
+
     render() {
         const { isLogin, classes } = this.props;
         const loginRouteConfig = {
@@ -35,4 +41,8 @@ const mapStateToProps = (state) => ({
     isLogin: state.auth.get('isLogin')
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(App));
+const mapDispatchToProps = (dispatch, props) => bindActionCreators({
+    initLogin: authActions.initLogin
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(App));
