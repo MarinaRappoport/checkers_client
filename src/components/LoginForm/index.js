@@ -22,13 +22,16 @@ const validate = (values) => {
 
 class LoginForm extends React.Component {
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const { handleSubmit, pristine, submitting, error, classes } = this.props;
 
         return (
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
                         <h1>התחבר</h1>
+                    </Grid>
+                    <Grid item xs={12}>
+                        {error && <span className={classes.errorMessage}>{error}</span>}
                     </Grid>
                     <Grid item xs={12}>
                         <Field component={TextField} label="שם משתמש" name="username" type="text" />

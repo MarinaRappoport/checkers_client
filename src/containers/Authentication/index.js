@@ -28,7 +28,12 @@ class Authentication extends React.Component {
     }
 
     async submitLogin(data) {
-        alert(JSON.stringify(data));
+        try {
+            const user = await AuthController.login(data);
+            this.props.setUser(user);
+        } catch(err) {
+            throw new SubmissionError({_error: "פרטים אינם תקינים"});
+        }
     }
 
     render() {
