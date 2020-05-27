@@ -15,15 +15,20 @@ class Authentication extends React.Component {
         super(props);
 
         this.submitRegister = this.submitRegister.bind(this);
+        this.submitLogin = this.submitLogin.bind(this);
     }
 
-    async submitRegister(event) {
+    async submitRegister(data) {
         try {
-            const user = await AuthController.register(event);
+            const user = await AuthController.register(data);
             this.props.setUser(user);
         } catch(err) {
             throw new SubmissionError({username: "שם משתמש כבר קיים"});
         }
+    }
+
+    async submitLogin(data) {
+        alert(JSON.stringify(data));
     }
 
     render() {
@@ -38,7 +43,7 @@ class Authentication extends React.Component {
                     />
                     <Route
                         exact path={`${match.path}/login`}
-                        component={LoginForm}
+                        component={() => <LoginForm onSubmit={this.submitLogin} />}
                     />
                 </Grid>
             </Grid>
