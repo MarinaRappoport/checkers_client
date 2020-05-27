@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from './actions';
+import AuthController from '../../controllers/AuthController';
 import LoginForm from '../../components/LoginForm';
 import RegisterForm from '../../components/RegisterForm';
 import styles from './styles';
@@ -16,9 +17,10 @@ class Authentication extends React.Component {
         this.submitRegister = this.submitRegister.bind(this);
     }
 
-    submitRegister(event) {
+    async submitRegister(event) {
         try {
-            this.props.register(event);
+            const user = await AuthController.register(event);
+            this.props.setUser(user);
         } catch(err) {
             throw new SubmissionError({username: "שם משתמש כבר קיים"});
         }
@@ -47,7 +49,7 @@ class Authentication extends React.Component {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch, props) => bindActionCreators({
-    register: actions.register
+    setUser: actions.setUser
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Authentication));

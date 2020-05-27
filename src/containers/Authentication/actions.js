@@ -1,7 +1,5 @@
-import AuthController from '../../controllers/AuthController';
 import { SET_USER } from './consts';
 
-export const register = (data) => async (dispatch) => {
-    const user = await AuthController.register(data);
+export const setUser = (user) => async (dispatch) => {
     dispatch({ type: SET_USER, payload: user });
 };
