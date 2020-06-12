@@ -2,7 +2,7 @@ import SockJSClient from '../libs/SockJsClient';
 import config from '../config.json';
 import * as GameActions from '../containers/Game/actions';
 
-class SocketController {
+class GameController {
     constructor() {
         this.sockJSClient = new SockJSClient();
         this.dispatch = null;
@@ -29,4 +29,4 @@ class SocketController {
     }
 }
 
-export default new SocketController();
+export default new GameController();
