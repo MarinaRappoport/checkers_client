@@ -1,4 +1,4 @@
 {
     "server": "http://localhost:8080/api/",
-    "socketServer": "http://localhost:8080/gs-guide-websocket"
+    "socketServer": "http://localhost:8080/websocket"
 }
