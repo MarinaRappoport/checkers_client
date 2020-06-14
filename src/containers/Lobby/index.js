@@ -3,8 +3,10 @@ import { Grid, withStyles } from '@material-ui/core';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UsersLists from '../../components/UsersList';
+import GameController from '../../controllers/GameController';
 import * as actions from './actions';
 import styles from './styles';
+import config from '../../config.json';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -15,6 +17,12 @@ class Lobby extends React.Component {
 
     componentWillMount() {
         this.props.fetchAllPlayers();
+    }
+
+    componentDidMount() {
+        GameController.bindAction(config.socketListen.gameInvitation, (invitation) => {
+            alert(JSON.stringify(invitation));
+        });
     }
 
     onSelectUser(user) {
