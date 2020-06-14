@@ -18,7 +18,7 @@ class Lobby extends React.Component {
     }
 
     onSelectUser(user) {
-        alert(JSON.stringify(user));
+        this.props.invitePlayer(user);
     }
 
     render() {
@@ -39,7 +39,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => bindActionCreators({
-    fetchAllPlayers: actions.fetchAllPlayers
+    fetchAllPlayers: actions.fetchAllPlayers,
+    invitePlayer: actions.invitePlayer
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Lobby));

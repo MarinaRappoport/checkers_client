@@ -11,6 +11,7 @@ class SockJsClient {
         this.connect = this.connect.bind(this);
         this.onConnect = this.onConnect.bind(this);
         this.disconnect = this.disconnect.bind(this);
+        this.send = this.send.bind(this);
     }
 
     /*
@@ -46,6 +47,11 @@ class SockJsClient {
             this.stompClient.disconnect();
         }
         this.isConnected = false;
+    }
+
+    send(path, data) {
+        data = JSON.stringify(data);
+        this.stompClient.send(path, {}, data);
     }
 }
 

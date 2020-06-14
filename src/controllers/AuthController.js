@@ -1,4 +1,5 @@
 import { requests } from '../libs/HttpClient';
+import config from '../config.json';
 
 class AuthController {
     constructor() {
@@ -10,14 +11,14 @@ class AuthController {
 
     async register({ username, password, name }) {
         const body = { username, password, name };
-        const req = await requests.post(`/auth/register`, body);
+        const req = await requests.post(config.paths.register, body);
 
         return req.data;
     }
 
     async login({ username, password }) {
         const body = { username, password };
-        const req = await requests.post(`/auth/login`, body);
+        const req = await requests.post(config.paths.login, body);
 
         this.setCredentials(username, password);
 

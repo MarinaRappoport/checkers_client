@@ -1,4 +1,10 @@
 {
     "server": "http://localhost:8080/api/",
-    "socketServer": "http://localhost:8080/websocket"
+    "socketServer": "http://localhost:8080/websocket",
+    "paths": {
+        "allPlayers": "/players",
+        "register": "/auth/register",
+        "login": "/auth/login",
+        "invitePlayer": "/invite"
+    }   
 }

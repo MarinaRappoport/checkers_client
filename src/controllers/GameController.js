@@ -1,6 +1,5 @@
 import SockJSClient from '../libs/SockJsClient';
 import config from '../config.json';
-import * as GameActions from '../containers/Game/actions';
 
 class GameController {
     constructor() {
@@ -25,7 +24,12 @@ class GameController {
 
     recvStartGame(invitation) {
         console.log(`Recv start game: ` , invitation);
-        GameActions.addInvitation(invitation)(this.dispatch);
+    }
+
+    invitePlayer(player) {
+        this.sockJSClient.send(config.paths.invitePlayer, {
+            toUser: player.username
+        });
     }
 }
 
