@@ -38,7 +38,7 @@ class SockJsClient {
         // Subscribes
         for(let subscribe of this.subscribes) {
             const { link, handler } = subscribe;
-            this.stompClient.subscribe(link, (msg) => handler(JSON.stringify(msg.body)));
+            this.stompClient.subscribe(link, (msg) => handler(JSON.parse(msg.body)));
         }
     }
 

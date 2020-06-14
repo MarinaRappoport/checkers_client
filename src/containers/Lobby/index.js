@@ -1,10 +1,11 @@
 import React from 'react';
-import { Grid, withStyles } from '@material-ui/core';
+import { Grid, withStyles, Button } from '@material-ui/core';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UsersLists from '../../components/UsersList';
 import GameController from '../../controllers/GameController';
 import * as actions from './actions';
+import * as AppActions from '../App/actions';
 import styles from './styles';
 import config from '../../config.json';
 
@@ -13,6 +14,7 @@ class Lobby extends React.Component {
         super(props);
 
         this.onSelectUser = this.onSelectUser.bind(this);
+        this.recivedInvitation = this.recivedInvitation.bind(this);
     }
 
     componentWillMount() {
@@ -20,8 +22,20 @@ class Lobby extends React.Component {
     }
 
     componentDidMount() {
-        GameController.bindAction(config.socketListen.gameInvitation, (invitation) => {
-            alert(JSON.stringify(invitation));
+        GameController.bindAction(config.socketListen.gameInvitation, this.recivedInvitation);
+    }
+
+    recivedInvitation(invitation) {
+        const { fromUser } = invitation;
+        this.props.enqueueSnackbar({
+            message: `הזמנה למשחק מאת ${fromUser}`,
+            options: {
+                key: new Date().getTime() + Math.random(),
+                variant: 'success',
+                action: key => (
+                    <Button onClick={() => alert(key)}>בטל</Button>
+                ),
+            },
         });
     }
 
@@ -48,7 +62,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, props) => bindActionCreators({
     fetchAllPlayers: actions.fetchAllPlayers,
-    invitePlayer: actions.invitePlayer
+    invitePlayer: actions.invitePlayer,
+    enqueueSnackbar: AppActions.enqueueSnackbar,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Lobby));

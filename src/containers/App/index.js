@@ -7,6 +7,7 @@ import styles from './styles';
 import * as authActions from '../Authentication/actions';
 import PrivateRoute from '../../components/PrivateRoute';
 import Authentication from '../Authentication';
+import Notifier from './notifier';
 import Lobby from '../Lobby';
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
 
         return (
             <div className={classes.root}>
+                <Notifier />
                 <Router>
                     <Switch>
                         <PrivateRoute

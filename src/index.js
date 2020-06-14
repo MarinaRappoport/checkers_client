@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import CssBaseLine from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
+import { SnackbarProvider } from 'notistack';
 import * as serviceWorker from './serviceWorker';
 import theme from './theme';
 import './index.css';
@@ -14,7 +15,9 @@ ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseLine />
-        <App />
+        <SnackbarProvider maxSnack={3} dense preventDuplicate anchorOrigin={{horizontal:'right',vertical:'bottom'}}>
+          <App />
+        </SnackbarProvider>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
