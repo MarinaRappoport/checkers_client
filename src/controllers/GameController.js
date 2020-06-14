@@ -27,9 +27,10 @@ class GameController {
     }
 
     invitePlayer(player) {
-        this.sockJSClient.send(config.paths.invitePlayer, {
+        const data = {
             toUser: player.username
-        });
+        };
+        this.sockJSClient.send(config.paths.invitePlayer, data);
     }
 }
 
