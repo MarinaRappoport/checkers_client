@@ -5,9 +5,11 @@
         "allPlayers": "/players",
         "register": "/auth/register",
         "login": "/auth/login",
-        "invitePlayer": "/invite"
+        "invitePlayer": "/invite",
+        "acceptPlayer": "/accept"
     },
     "socketListen": {
-        "gameInvitation": "/user/queue/invite"
+        "gameInvitation": "/user/queue/invite",
+        "gameStart": "/user/queue/start_game"
     }
 }

@@ -50,6 +50,13 @@ class GameController {
         };
         this.sockJSClient.send(config.paths.invitePlayer, data);
     }
+
+    acceptPlayer(playerUsername) {
+        const data = {
+            toUser: playerUsername
+        };
+        this.sockJSClient.send(config.paths.acceptPlayer, data);
+    }
 }
 
 export default new GameController();

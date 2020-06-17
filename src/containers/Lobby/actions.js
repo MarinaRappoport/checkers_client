@@ -10,3 +10,7 @@ export const fetchAllPlayers = () => async (dispatch) => {
 export const invitePlayer = (player) => async(dispatch) => {
     GameController.invitePlayer(player);
 };
+
+export const acceptPlayer = (player) => async(dispatch) => {
+    GameController.acceptPlayer(player);
+};

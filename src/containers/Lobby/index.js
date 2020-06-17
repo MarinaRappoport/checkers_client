@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Grid, withStyles, Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UsersLists from '../../components/UsersList';
@@ -15,6 +16,7 @@ class Lobby extends React.Component {
 
         this.onSelectUser = this.onSelectUser.bind(this);
         this.recivedInvitation = this.recivedInvitation.bind(this);
+        this.gameStart = this.gameStart.bind(this);
     }
 
     componentWillMount() {
@@ -23,23 +25,37 @@ class Lobby extends React.Component {
 
     componentDidMount() {
         GameController.bindAction(config.socketListen.gameInvitation, this.recivedInvitation);
+        GameController.bindAction(config.socketListen.gameStart, this.gameStart);
+    }
+
+    gameStart(info) {
+        this.props.history.push('/game');
     }
 
     recivedInvitation(invitation) {
         const { fromUser } = invitation;
-        const { classes, closeSnackbar } = this.props;
+        const { classes, closeSnackbar, acceptPlayer } = this.props;
+
+        const action = key => (
+            <Fragment>
+                <Button
+                    className={classes.acceptInvitationButton}
+                    onClick={() => { acceptPlayer(fromUser); closeSnackbar(key); }}
+                >
+                    {`קבל`}
+                </Button>
+                <Button onClick={() => closeSnackbar(key)}>
+                    {`בטל`}
+                </Button>
+            </Fragment>
+        );
 
         this.props.enqueueSnackbar({
             message: `הזמנה למשחק מאת ${fromUser}`,
             options: {
                 key: new Date().getTime() + Math.random(),
                 variant: 'success',
-                action: key => (
-                    <Fragment>
-                        <Button className={classes.acceptInvitationButton} onClick={() => alert(key)}>קבל</Button>
-                        <Button onClick={() => closeSnackbar(key)}>בטל</Button>
-                    </Fragment>
-                ),
+                action,
             },
         });
     }
@@ -68,8 +84,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, props) => bindActionCreators({
     fetchAllPlayers: actions.fetchAllPlayers,
     invitePlayer: actions.invitePlayer,
+    acceptPlayer: actions.acceptPlayer,
     enqueueSnackbar: AppActions.enqueueSnackbar,
     closeSnackbar: AppActions.closeSnackbar,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Lobby));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(Lobby)));
