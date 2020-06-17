@@ -6,5 +6,8 @@ export default (theme) => ({
         textAlign: 'center',
         paddingBottom: '1%',
         borderRadius: '20px'
-    }
+    },
+    acceptInvitationButton: {
+        fontWeight: 'bold'
+    },
 });

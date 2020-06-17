@@ -15,7 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseLine />
-        <SnackbarProvider maxSnack={3} dense preventDuplicate anchorOrigin={{horizontal:'right',vertical:'bottom'}}>
+        <SnackbarProvider maxSnack={3} hideIconVariant preventDuplicate anchorOrigin={{horizontal:'right',vertical:'bottom'}}>
           <App />
         </SnackbarProvider>
       </ThemeProvider>

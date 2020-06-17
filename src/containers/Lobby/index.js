@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Grid, withStyles, Button } from '@material-ui/core';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -27,13 +27,18 @@ class Lobby extends React.Component {
 
     recivedInvitation(invitation) {
         const { fromUser } = invitation;
+        const { classes, closeSnackbar } = this.props;
+
         this.props.enqueueSnackbar({
             message: `הזמנה למשחק מאת ${fromUser}`,
             options: {
                 key: new Date().getTime() + Math.random(),
                 variant: 'success',
                 action: key => (
-                    <Button onClick={() => alert(key)}>בטל</Button>
+                    <Fragment>
+                        <Button className={classes.acceptInvitationButton} onClick={() => alert(key)}>קבל</Button>
+                        <Button onClick={() => closeSnackbar(key)}>בטל</Button>
+                    </Fragment>
                 ),
             },
         });
@@ -64,6 +69,7 @@ const mapDispatchToProps = (dispatch, props) => bindActionCreators({
     fetchAllPlayers: actions.fetchAllPlayers,
     invitePlayer: actions.invitePlayer,
     enqueueSnackbar: AppActions.enqueueSnackbar,
+    closeSnackbar: AppActions.closeSnackbar,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Lobby));
