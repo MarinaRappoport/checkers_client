@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core';
 import classnames from 'classnames';
 import styles from './styles';
 
-const RenderSquare = (piece) => {
+const RenderSquare = (piece, isSelected) => {
     if (piece === null)
         return null;
 
@@ -25,6 +25,10 @@ const RenderSquare = (piece) => {
         };
     }
 
+    if(isSelected) {
+        style['border'] = '3px solid red';
+    }
+
     return <div style={style}></div>;
 };
 
@@ -40,7 +44,7 @@ const GetColor = (row, column) => {
     }
 };
 
-const GameBoard = ({ classes, board, selectOptions }) => {
+const GameBoard = ({ classes, board, selectOptions, selected }) => {
     return (
         <table className={classes.board}>
             {board.map((squares, row) => (
@@ -53,7 +57,7 @@ const GameBoard = ({ classes, board, selectOptions }) => {
                                 {[classes.optionSquare]: selectOptions.filter(([x,y]) => x === row && y === column).size > 0}
                             )}
                         >
-                            {RenderSquare(square)}
+                            {RenderSquare(square, selected.get(0) === row && selected.get(1) === column)}
                         </td>
                     ))}
                 </tr>

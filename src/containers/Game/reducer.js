@@ -14,7 +14,8 @@ const initState = fromJS({
     ],
     selectOptions: [
         [3,0],[3,2],[2,1]
-    ]
+    ],
+    selected: [2,1]
 });
 
 export default function authReducer(state = initState, action) {
