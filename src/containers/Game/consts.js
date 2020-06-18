@@ -1,1 +1,0 @@
-export const ADD_GAME_INVITATION = 'Game/ADD_GAME_INVITATION';

@@ -1,16 +1,21 @@
-import Immutable, { fromJS } from 'immutable';
-import { ADD_GAME_INVITATION } from './consts';
+import { fromJS } from 'immutable';
+import { } from './consts';
 
-const initState = Immutable.fromJS({
-    invitations: []
+const initState = fromJS({
+    board: [
+        [null, 'white', null, 'white', null, 'white', null, 'white'],
+        ['white', null, 'white', null, 'white', null, 'white', null],
+        [null, 'white', null, 'white', null, 'white', null, 'white'],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, 'black', null, 'black', null, 'black', null, 'black'],
+        ['black', null, 'black', null, 'black', null, 'black', null],
+        [null, 'black', null, 'black', null, 'black', null, 'black'],
+    ]
 });
 
 export default function authReducer(state = initState, action) {
     switch(action.type) {
-        case ADD_GAME_INVITATION:
-            return (
-                state.update('invitations', arr => arr.push(fromJS(action.payload)))
-            );
         default:
             return state;
     }
