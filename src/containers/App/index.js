@@ -4,9 +4,10 @@ import { withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from './styles';
-import * as authActions from '../Authentication/actions';
 import PrivateRoute from '../../components/PrivateRoute';
+import * as authActions from '../Authentication/actions';
 import Authentication from '../Authentication';
+import Game from '../Game';
 import Notifier from './notifier';
 import Lobby from '../Lobby';
 
@@ -31,6 +32,7 @@ class App extends React.Component {
                             path="/auth" component={Authentication}
                             config={{ redirectUrl: '/', redirected: isLogin }}
                         />
+                        <PrivateRoute path="/game" component={Game} config={loginRouteConfig} />
                         <PrivateRoute path="/" component={Lobby} config={loginRouteConfig} />
                     </Switch>
                 </Router>
