@@ -1,5 +1,5 @@
 import UsersController from '../../controllers/UsersController';
-import GameController from '../../controllers/GameController';
+import GameIOController from '../../controllers/GameIOController';
 import { SET_ALL_USERS } from './consts';
 
 export const fetchAllPlayers = () => async (dispatch) => {
@@ -8,9 +8,9 @@ export const fetchAllPlayers = () => async (dispatch) => {
 };
 
 export const invitePlayer = (player) => async(dispatch) => {
-    GameController.invitePlayer(player);
+    GameIOController.invitePlayer(player);
 };
 
 export const acceptPlayer = (player) => async(dispatch) => {
-    GameController.acceptPlayer(player);
+    GameIOController.acceptPlayer(player);
 };

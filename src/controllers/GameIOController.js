@@ -3,9 +3,9 @@ import config from '../config.json';
 
 /*
     API:
-     1. Listen to event: GameController.bindAction( path, (body) => {...} )
+     1. Listen to event: GameIOController.bindAction( path, (body) => {...} )
 */
-class GameController {
+class GameIOController {
     constructor() {
         // Init vars
         this.sockJSClient = new SockJSClient();
@@ -59,4 +59,4 @@ class GameController {
     }
 }
 
-export default new GameController();
+export default new GameIOController();

@@ -1,11 +1,11 @@
 import AuthController from '../../controllers/AuthController';
-import GameController from '../../controllers/GameController';
+import GameIOController from '../../controllers/GameIOController';
 import { SET_USER } from './consts';
 
 export const setUser = (user) => async (dispatch) => {
     dispatch({ type: SET_USER, payload: user });
 
-    GameController.connect(user.username, dispatch);
+    GameIOController.connect(user.username, dispatch);
 };
 
 export const initLogin = () => async (dispatch) => {

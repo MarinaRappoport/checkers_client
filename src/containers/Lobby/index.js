@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UsersLists from '../../components/UsersList';
-import GameController from '../../controllers/GameController';
+import GameIOController from '../../controllers/GameIOController';
 import * as actions from './actions';
 import * as AppActions from '../App/actions';
 import styles from './styles';
@@ -24,8 +24,8 @@ class Lobby extends React.Component {
     }
 
     componentDidMount() {
-        GameController.bindAction(config.socketListen.gameInvitation, this.recivedInvitation);
-        GameController.bindAction(config.socketListen.gameStart, this.gameStart);
+        GameIOController.bindAction(config.socketListen.gameInvitation, this.recivedInvitation);
+        GameIOController.bindAction(config.socketListen.gameStart, this.gameStart);
     }
 
     gameStart(info) {
