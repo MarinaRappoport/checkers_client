@@ -6,12 +6,13 @@ import GameBoard from '../../components/GameBoard';
 
 const Game = ({ classes }) => {
     const board = useSelector(state => state.game.get('board'));
+    const selectOptions = useSelector(state => state.game.get('selectOptions'));
 
     return (
         <Grid container spacing={0} direction="column" alignContent="center" justify="center">
             <Grid item xs={12} className={classes.title}><h1>Game</h1></Grid>
             <Grid item xs={6}>
-                <GameBoard board={board} />
+                <GameBoard board={board} selectOptions={selectOptions} />
             </Grid>
         </Grid>
     );

@@ -8,7 +8,6 @@ export default (theme) => ({
     square: {
         width: '60px',
         height: '60px',
-        paddingLeft: '10px',
         cursor: 'pointer'
     },
     black: {
@@ -17,5 +16,9 @@ export default (theme) => ({
     },
     white: {
         background: 'white'
+    },
+    optionSquare: {
+        background: '#03ff03',
+        opacity: 0.8
     },
 });

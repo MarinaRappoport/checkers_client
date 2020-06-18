@@ -11,6 +11,9 @@ const initState = fromJS({
         [null, 'black', null, 'black', null, 'black', null, 'black'],
         ['black', null, 'black', null, 'black', null, 'black', null],
         [null, 'black', null, 'black', null, 'black', null, 'black'],
+    ],
+    selectOptions: [
+        [3,0],[3,2],[2,1]
     ]
 });
 
