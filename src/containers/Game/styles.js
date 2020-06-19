@@ -1,5 +1,8 @@
 export default (theme) => ({
-    title: {
+    game_sidebar: {
         textAlign: 'center'
+    },
+    gameContainer: {
+        marginTop: '20px'
     }
 });
