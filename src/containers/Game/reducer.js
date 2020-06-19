@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
-import { } from './consts';
+import { SELECT_PIECE} from './consts';
+import GameLogicController from '../../controllers/GameLogicController';
 
 const initState = fromJS({
     board: [
@@ -18,8 +19,17 @@ const initState = fromJS({
     selected: [2,1]
 });
 
-export default function authReducer(state = initState, action) {
+export default function gameReducer(state = initState, action) {
     switch(action.type) {
+        case SELECT_PIECE:
+            const { row, column } = action.payload;
+            const current_select = state.get('selected');
+            const newSelected = GameLogicController.getSelectedPoints(
+                [current_select.get(0), current_select.get(1)],
+                [row, column]
+            );
+            
+            return state.set('selected', fromJS(newSelected));
         default:
             return state;
     }

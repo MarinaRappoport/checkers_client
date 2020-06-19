@@ -1,0 +1,1 @@
+export const SELECT_PIECE = 'Game/SELECT_PIECE';
