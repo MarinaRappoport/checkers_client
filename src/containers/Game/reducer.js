@@ -13,6 +13,9 @@ const initState = fromJS({
         ['black', null, 'black', null, 'black', null, 'black', null],
         [null, 'black', null, 'black', null, 'black', null, 'black'],
     ],
+    opponent: {
+        username: 'David'
+    },
     selectOptions: [
         [3,0],[3,2],[2,1]
     ],
