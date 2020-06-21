@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, withStyles } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles';
@@ -14,6 +14,10 @@ const Game = ({ classes }) => {
     const selected = useSelector(state => state.game.get('selected'));
     const opponent = useSelector(state => state.game.get('opponent'));
     const onSelectPiece = ({row, column}) => dispatch(actions.onSelectPiece(row, column));
+
+    useEffect(() => {
+        dispatch( actions.initGame() );
+    }, []);
 
     return (
         <Grid container spacing={0}>
