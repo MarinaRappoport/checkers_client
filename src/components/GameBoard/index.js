@@ -44,7 +44,7 @@ const GetColor = (row, column) => {
     }
 };
 
-const GameBoard = ({ classes, board, selectOptions, selected, onSelectPiece }) => {
+const GameBoard = ({ classes, board, possibleSquares, selected, onSelectPiece }) => {
     return (
         <table className={classes.board}>
             {board.map((squares, row) => (
@@ -54,7 +54,7 @@ const GameBoard = ({ classes, board, selectOptions, selected, onSelectPiece }) =
                             key={column}
                             className={classnames(
                                 classes.square, classes[GetColor(row, column)],
-                                {[classes.optionSquare]: selectOptions.filter(([x,y]) => x === row && y === column).size > 0}
+                                {[classes.optionSquare]: possibleSquares.filter(([x,y]) => x === row && y === column).size > 0}
                             )}
                             onClick={() => onSelectPiece({row, column})}
                         >

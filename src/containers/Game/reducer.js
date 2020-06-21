@@ -1,14 +1,12 @@
 import { fromJS } from 'immutable';
-import { SET_SELECT_PIECE, SET_BOARD } from './consts';
+import { SET_SELECT_PIECE, SET_BOARD, SET_POSSIBLE_SQUARES } from './consts';
 
 const initState = fromJS({
     board: [],
     opponent: {
         username: 'David'
     },
-    selectOptions: [
-        [3,0],[3,2],[2,1]
-    ],
+    possibleSquares: [],
     selected: []
 });
 
@@ -18,6 +16,8 @@ export default function gameReducer(state = initState, action) {
             return state.set('board', fromJS(action.payload));
         case SET_SELECT_PIECE:
             return state.set('selected', fromJS(action.payload));
+        case SET_POSSIBLE_SQUARES:
+            return state.set('possibleSquares', fromJS(action.payload));
         default:
             return state;
     }

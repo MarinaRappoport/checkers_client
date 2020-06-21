@@ -1,2 +1,3 @@
+export const SET_POSSIBLE_SQUARES = 'Game/SET_POSSIBLE_SQUARES';
 export const SET_SELECT_PIECE = 'Game/SET_SELECT_PIECE';
 export const SET_BOARD = 'Game/SET_BOARD';
