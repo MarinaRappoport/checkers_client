@@ -40,19 +40,28 @@ class GameLogicController {
         }
 
         this._selected = this._calcSelectSquare(row, column);
-        this._possibleSquares = this._calcPossibleSquare(row, column);
+        this._possibleSquares = this._calcPossibleSquare();
     }
 
     _canSelectSquare(row, column) {
         return this._board[row][column] === this._playerColor;
     }
 
-    _calcPossibleSquare(row, column) {
+    _calcPossibleSquare() {
+        const [row, column] = this._selected;
+        if(row === -1 || column === -1) {
+            return [];
+        }
+
         const _possibleRow = (this._playerColor === WHITE) ? row + 1 : row - 1;
-        return [
+        let possibleSquares = [
             [_possibleRow, column + 1],
             [_possibleRow, column - 1],
         ];
+
+        // Filter the squares which has players on
+        possibleSquares = possibleSquares.filter(([i, j]) => this._board[i][j] === null);
+        return possibleSquares;
     }
 
     _calcSelectSquare(row, column) {
