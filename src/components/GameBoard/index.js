@@ -2,37 +2,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core';
 import classnames from 'classnames';
 import styles from './styles';
+import Piece from './piece';
 
-const RenderSquare = ({piece, isSelected, onSelect}) => {
-    if (piece === null)
-        return null;
-
-    let style = {
-        width: '80%',
-        borderRadius: '30px',
-        marginLeft: '5px',
-        height: '80%'
-    };
-    if (piece === 'black') {
-        style = {
-            ...style,
-            background: 'black'
-        };
-    } else {
-        style = {
-            ...style,
-            background: 'white'
-        };
-    }
-
-    if(isSelected) {
-        style['border'] = '3px solid red';
-    }
-
-    return <div style={style} onClick={onSelect}></div>;
-};
-
-const GetColor = (row, column) => {
+const GetSquareColor = (row, column) => {
     if (row % 2 === 0) {
         if (column % 2 === 0)
             return 'white';
@@ -44,6 +16,10 @@ const GetColor = (row, column) => {
     }
 };
 
+const isPossibleSquare = (row, column, possibleSquares) => {
+    return possibleSquares.filter(([x, y]) => x === row && y === column).size > 0
+};
+
 const GameBoard = ({ classes, board, possibleSquares, selected, onSelectPiece }) => {
     return (
         <table className={classes.board}>
@@ -53,15 +29,15 @@ const GameBoard = ({ classes, board, possibleSquares, selected, onSelectPiece })
                         <td
                             key={column}
                             className={classnames(
-                                classes.square, classes[GetColor(row, column)],
-                                {[classes.optionSquare]: possibleSquares.filter(([x,y]) => x === row && y === column).size > 0}
+                                classes.square, classes[GetSquareColor(row, column)],
+                                { [classes.optionSquare]: isPossibleSquare(row, column, possibleSquares) }
                             )}
-                            onClick={() => onSelectPiece({row, column})}
+                            onClick={() => onSelectPiece({ row, column })}
                         >
-                            {RenderSquare({
-                                piece: square,
-                                isSelected: selected.get(0) === row && selected.get(1) === column
-                            })}
+                            <Piece
+                                piece={square}
+                                isSelected={selected.get(0) === row && selected.get(1) === column}
+                            />
                         </td>
                     ))}
                 </tr>
