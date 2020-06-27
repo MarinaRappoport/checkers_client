@@ -11,6 +11,7 @@ class GameIOController {
         this.sockJSClient = new SockJSClient();
         this.dispatch = null;
         this.bindedActions = {};
+        this.player = {};
 
         // Binding functions
         this.connect = this.connect.bind(this);
@@ -18,8 +19,9 @@ class GameIOController {
         this.invitePlayer = this.invitePlayer.bind(this);
     }
 
-    connect(username, dispatch) {
+    connect(player, dispatch) {
         this.dispatch = dispatch;
+        this.player = player;
 
         /* Dynamic loading links */
         const links = Object.entries(config.socketListen).map(([key, val]) => val);
@@ -28,7 +30,7 @@ class GameIOController {
             handler: this.handleLink(link)
         }));
 
-        this.sockJSClient.connect(config.socketServer, username, subscribes);
+        this.sockJSClient.connect(config.socketServer, this.player.username, subscribes);
     }
 
     handleLink(link) {
@@ -45,6 +47,10 @@ class GameIOController {
     }
 
     invitePlayer(player) {
+        if(player.username === this.player.username) {
+            return; // Player cannot invite himself
+        }
+
         const data = {
             toUser: player.username
         };

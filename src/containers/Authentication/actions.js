@@ -5,7 +5,7 @@ import { SET_USER } from './consts';
 export const setUser = (user) => async (dispatch) => {
     dispatch({ type: SET_USER, payload: user });
 
-    GameIOController.connect(user.username, dispatch);
+    GameIOController.connect(user);
 };
 
 export const initLogin = () => async (dispatch) => {

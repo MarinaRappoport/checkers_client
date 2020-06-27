@@ -61,6 +61,22 @@ class Lobby extends React.Component {
     }
 
     onSelectUser(user) {
+        const action = key => (
+            <Button style={{color:'white'}} onClick={() => this.props.closeSnackbar(key)}>
+                {`אישור`}
+            </Button>
+        );
+        if (user.username === this.props.loggedUser.get('username')) {
+            this.props.enqueueSnackbar({
+                message: 'לא ניתן להזמין את עצמך למשחק',
+                options: {
+                    key: new Date().getTime() + Math.random(),
+                    variant: 'outlined',
+                    action
+                }
+            });
+        }
+
         this.props.invitePlayer(user);
     }
 
@@ -78,7 +94,8 @@ class Lobby extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    allUsers: state.lobby.get('allUsers')
+    allUsers: state.lobby.get('allUsers'),
+    loggedUser: state.auth.get('user')
 });
 
 const mapDispatchToProps = (dispatch, props) => bindActionCreators({
