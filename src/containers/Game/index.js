@@ -17,7 +17,7 @@ const Game = ({ classes }) => {
 
     useEffect(() => {
         dispatch( actions.initGame() );
-    }, []);
+    }, [dispatch]);
 
     return (
         <Grid container spacing={0}>
