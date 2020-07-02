@@ -3,8 +3,8 @@ import GameLogicController from '../../controllers/GameLogicController';
 
 let gameLogicController;
 
-export const loadGame = (gameData) => async (dispatch) => {
-    gameLogicController = new GameLogicController();
+export const loadGame = (gameData, username) => async (dispatch) => {
+    gameLogicController = new GameLogicController(username);
     gameLogicController.loadGame(gameData);
     
     dispatch({

@@ -30,8 +30,9 @@ class Lobby extends React.Component {
     }
 
     gameStart(game) {
-        this.props.loadGame(game);
-        this.props.history.push('/game');
+        const { loadGame, history, loggedUser } = this.props;
+        loadGame(game, loggedUser.get('username'));
+        history.push('/game');
     }
 
     recivedInvitation(invitation) {
