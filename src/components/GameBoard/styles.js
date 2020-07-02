@@ -11,7 +11,7 @@ export default (theme) => ({
         cursor: 'pointer'
     },
     black: {
-        background: 'black',
+        background: 'green',
         color: 'white'
     },
     white: {
