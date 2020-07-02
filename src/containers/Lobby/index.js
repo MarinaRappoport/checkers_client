@@ -7,6 +7,7 @@ import UsersLists from '../../components/UsersList';
 import GameIOController from '../../controllers/GameIOController';
 import * as actions from './actions';
 import * as AppActions from '../App/actions';
+import * as GameActions from '../Game/actions';
 import styles from './styles';
 import config from '../../config.json';
 
@@ -28,7 +29,8 @@ class Lobby extends React.Component {
         GameIOController.bindAction(config.socketListen.gameStart, this.gameStart);
     }
 
-    gameStart(info) {
+    gameStart(game) {
+        this.props.loadGame(game);
         this.props.history.push('/game');
     }
 
@@ -104,6 +106,7 @@ const mapDispatchToProps = (dispatch, props) => bindActionCreators({
     acceptPlayer: actions.acceptPlayer,
     enqueueSnackbar: AppActions.enqueueSnackbar,
     closeSnackbar: AppActions.closeSnackbar,
+    loadGame: GameActions.loadGame,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(Lobby)));

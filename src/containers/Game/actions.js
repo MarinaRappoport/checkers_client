@@ -1,14 +1,17 @@
 import { SET_SELECT_PIECE, SET_BOARD, SET_POSSIBLE_SQUARES } from "./consts";
 import GameLogicController from '../../controllers/GameLogicController';
 
-let gameLogicController = new GameLogicController('white');;
+let gameLogicController;
 
-export const initGame = () => async (dispatch) => {
+export const loadGame = (gameData) => async (dispatch) => {
+    gameLogicController = new GameLogicController();
+    gameLogicController.loadGame(gameData);
+    
     dispatch({
         type: SET_BOARD,
         payload: gameLogicController.getBoard()
     });
-}
+};
 
 export const onSelectPiece = (row, column) => async (dispatch) => {
     gameLogicController.selectSquare(row, column);

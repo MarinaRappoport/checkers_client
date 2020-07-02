@@ -1,25 +1,60 @@
+import { range, find } from 'lodash';
+
 const BLACK = 'black';
 const WHITE = 'white';
 
+function parsePlayerColor(color) {
+    if(color.toLocaleLowerCase() === WHITE.toLowerCase()) {
+        return WHITE;
+    }
+    if(color.toLocaleLowerCase() === BLACK.toLowerCase()) {
+        return BLACK;
+    }
+    return null;
+}
+
 class GameLogicController {
-    constructor(playerColor) {
-        this._board = this.initBoard();
+    constructor() {
+        this._board = [];
         this._selected = [-1,-1];
         this._possibleSquares = [];
-        this._playerColor = playerColor;
+        this._playerColor = null;
+
+        this._loadBoard = this._loadBoard.bind(this);
+        this.loadGame = this.loadGame.bind(this);
     }
 
-    initBoard() {
-        return [
-            [null, WHITE, null, WHITE, null, WHITE, null, WHITE],
-            [WHITE, null, WHITE, null, WHITE, null, WHITE, null],
-            [null, WHITE, null, WHITE, null, WHITE, null, WHITE],
-            [null, null, null, null, null, null, null, null],
-            [null, null, null, null, null, null, null, null],
-            [null, BLACK, null, BLACK, null, BLACK, null, BLACK],
-            [BLACK, null, BLACK, null, BLACK, null, BLACK, null],
-            [null, BLACK, null, BLACK, null, BLACK, null, BLACK],
-        ];
+    loadGame(game) {
+        this._playerColor = parsePlayerColor(game.currentPlayerColor);
+        this._loadBoard(game.board);
+    }
+
+    _loadBoard(board) {
+        const pieces = board.pieces;
+        const checkPiecePoint = (piece, i, j) => (
+            piece.position.row === (i+1) && piece.position.column === (j+1)
+        );
+
+        this._board = this._getCleanBoard();   // 8 x 8 board
+        for(let i of range(0,8)) {  // for i=0 to i=7
+            for(let j of range(0,8)) {  // for j=0 to j=7
+                const pointPiece = find(pieces, (piece) => checkPiecePoint(piece, i, j));
+                if(pointPiece != null) {
+                    this._board[i][j] = parsePlayerColor(pointPiece.color);
+                }
+            }
+        }
+    }
+
+    _getCleanBoard() {
+        const board = [];
+        for(let i of range(0,8)) {
+            board.push([]);
+            for(let j of range(0,8)) {
+                board[i].push(null);
+            }
+        }
+        return board;
     }
 
     getBoard() {
