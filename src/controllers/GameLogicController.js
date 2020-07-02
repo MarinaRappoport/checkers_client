@@ -99,23 +99,25 @@ class GameLogicController {
         const moveValidation = (move) => move.from.row === row && move.from.column === column;
         const possibleMoves = filter(this._possibleMoves, moveValidation);
 
+        if(this._isUnselectSquare(row, column)) {
+            this._selected = [-1, -1];
+            this._selectableSquares = [];
+            return;
+        }
+
         if (possibleMoves.length === 0) {
             return;
         }
 
-        this._selected = this._calcSelectSquare(row, column);
+        this._selected = [row, column];
         this._selectableSquares = possibleMoves.map(move => [move.to.row, move.to.column]);
     }
 
-    _calcSelectSquare(row, column) {
+    _isUnselectSquare(row, column) {
         const current = this._selected;
         const selected = [row, column];
 
-        if (current[0] === selected[0] && current[1] === selected[1]) { // If selected current square
-            return [-1, -1];
-        }
-
-        return selected;
+        return current[0] === selected[0] && current[1] === selected[1];
     }
 }
 
