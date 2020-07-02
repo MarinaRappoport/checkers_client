@@ -14,20 +14,19 @@ function parsePlayerColor(color) {
 }
 
 class GameLogicController {
-    constructor(username) {
+    constructor() {
         this._board = [];
         this._selected = [-1, -1];
         this._selectableSquares = [];
         this._playerColor = null;
-        this._playerName = username;
         this._possibleMoves = [];
 
         this._loadBoard = this._loadBoard.bind(this);
         this.loadGame = this.loadGame.bind(this);
     }
 
-    loadGame(game) {
-        this._playerColor = this._getPlayerColor(game);
+    loadGame(game, playerColor) {
+        this._playerColor = playerColor;
         this._loadBoard(game.board);
         this._possibleMoves = this._preprocessLegalMoves(game.legalMovesCollection);
     }
@@ -40,19 +39,6 @@ class GameLogicController {
             from: decreasePoint(move.from),
             to: decreasePoint(move.to)
         }));
-    }
-
-    _getPlayerColor(game) {
-        const { black, white } = game;
-
-        if (black.name === this._playerName) {
-            return BLACK;
-        }
-        if (white.name === this._playerName) {
-            return WHITE;
-        }
-
-        return null;
     }
 
     _loadBoard(board) {
