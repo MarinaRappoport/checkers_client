@@ -10,7 +10,7 @@ const Game = ({ classes }) => {
     const dispatch = useDispatch();
 
     const board = useSelector(state => state.game.get('board'));
-    const possibleSquares = useSelector(state => state.game.get('possibleSquares'));
+    const selectableSquares = useSelector(state => state.game.get('selectableSquares'));
     const selected = useSelector(state => state.game.get('selected'));
     const opponent = useSelector(state => state.game.get('opponent'));
     const onSelectPiece = ({row, column}) => dispatch(actions.onSelectPiece(row, column));
@@ -26,7 +26,7 @@ const Game = ({ classes }) => {
             <Grid item xs={6}>
                 <div className={classes.gameContainer}>
                     <GameBoard
-                        board={board} possibleSquares={possibleSquares} selected={selected}
+                        board={board} selectableSquares={selectableSquares} selected={selected}
                         onSelectPiece={onSelectPiece}
                     />
                 </div>

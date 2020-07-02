@@ -1,4 +1,4 @@
-import { SET_SELECT_PIECE, SET_BOARD, SET_POSSIBLE_SQUARES } from "./consts";
+import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES } from "./consts";
 import GameLogicController from '../../controllers/GameLogicController';
 
 let gameLogicController;
@@ -22,7 +22,7 @@ export const onSelectPiece = (row, column) => async (dispatch) => {
     });
 
     dispatch({
-        type: SET_POSSIBLE_SQUARES,
-        payload: gameLogicController.getPossibleSquares()
+        type: SET_SELECTABLE_SQUARES,
+        payload: gameLogicController.getSelectableSquares()
     });
 };

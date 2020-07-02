@@ -1,4 +1,4 @@
-import { range, find } from 'lodash';
+import { range, find, filter } from 'lodash';
 
 const BLACK = 'black';
 const WHITE = 'white';
@@ -17,9 +17,10 @@ class GameLogicController {
     constructor(username) {
         this._board = [];
         this._selected = [-1, -1];
-        this._possibleSquares = [];
+        this._selectableSquares = [];
         this._playerColor = null;
         this._playerName = username;
+        this._possibleMoves = [];
 
         this._loadBoard = this._loadBoard.bind(this);
         this.loadGame = this.loadGame.bind(this);
@@ -28,15 +29,26 @@ class GameLogicController {
     loadGame(game) {
         this._playerColor = this._getPlayerColor(game);
         this._loadBoard(game.board);
+        this._possibleMoves = this._preprocessLegalMoves(game.legalMovesCollection);
+    }
+
+    _preprocessLegalMoves(moves) {
+        const decreasePoint = (p) => ({ row: p.row - 1, column: p.column - 1 });
+
+        return moves.map(move => ({
+            ...move,
+            from: decreasePoint(move.from),
+            to: decreasePoint(move.to)
+        }));
     }
 
     _getPlayerColor(game) {
         const { black, white } = game;
-        
-        if(black.name === this._playerName) {
+
+        if (black.name === this._playerName) {
             return BLACK;
         }
-        if(white.name === this._playerName) {
+        if (white.name === this._playerName) {
             return WHITE;
         }
 
@@ -79,38 +91,20 @@ class GameLogicController {
         return [...this._selected];
     }
 
-    getPossibleSquares() {
-        return this._possibleSquares;
+    getSelectableSquares() {
+        return this._selectableSquares;
     }
 
     selectSquare(row, column) {
-        if (!this._canSelectSquare(row, column)) {
+        const moveValidation = (move) => move.from.row === row && move.from.column === column;
+        const possibleMoves = filter(this._possibleMoves, moveValidation);
+
+        if (possibleMoves.length === 0) {
             return;
         }
 
         this._selected = this._calcSelectSquare(row, column);
-        this._possibleSquares = this._calcPossibleSquare();
-    }
-
-    _canSelectSquare(row, column) {
-        return this._board[row][column] === this._playerColor;
-    }
-
-    _calcPossibleSquare() {
-        const [row, column] = this._selected;
-        if (row === -1 || column === -1) {
-            return [];
-        }
-
-        const _possibleRow = (this._playerColor === WHITE) ? row + 1 : row - 1;
-        let possibleSquares = [
-            [_possibleRow, column + 1],
-            [_possibleRow, column - 1],
-        ];
-
-        // Filter the squares which has players on
-        possibleSquares = possibleSquares.filter(([i, j]) => this._board[i][j] === null);
-        return possibleSquares;
+        this._selectableSquares = possibleMoves.map(move => [move.to.row, move.to.column]);
     }
 
     _calcSelectSquare(row, column) {
