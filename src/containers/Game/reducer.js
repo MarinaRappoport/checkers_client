@@ -7,7 +7,7 @@ const initState = fromJS({
         username: 'David',
         color: '',
     },
-    yourself: {
+    player: {
         color: '',
     },
     selectableSquares: [],
@@ -23,7 +23,7 @@ export default function gameReducer(state = initState, action) {
         case SET_SELECTABLE_SQUARES:
             return state.set('selectableSquares', fromJS(action.payload));
         case SET_PLAYER_COLOR:
-            return state.setIn(['yourself','color'], action.payload);
+            return state.setIn(['player','color'], action.payload);
         case SET_OPPONENT_COLOR:
             return state.setIn(['opponent','color'], action.payload);
         default:

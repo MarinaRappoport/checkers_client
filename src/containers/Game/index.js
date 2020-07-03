@@ -13,6 +13,7 @@ const Game = ({ classes }) => {
     const selectableSquares = useSelector(state => state.game.get('selectableSquares'));
     const selected = useSelector(state => state.game.get('selected'));
     const opponent = useSelector(state => state.game.get('opponent'));
+    const player = useSelector(state => state.game.get('player'));
     const onSelectPiece = ({row, column}) => dispatch(actions.onSelectPiece(row, column));
 
     return (
@@ -20,7 +21,7 @@ const Game = ({ classes }) => {
             <Grid item xs={3} className={classes.game_sidebar}>
                 <h1>Game</h1>
                 
-                <GameInfo opponent={opponent} />
+                <GameInfo opponent={opponent} player={player} />
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={6}>
