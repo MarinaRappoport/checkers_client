@@ -19,7 +19,7 @@ export const loadGame = (gameData, username) => async (dispatch) => {
     dispatch({ type: SET_PLAYER_COLOR, payload: userColor });
 };
 
-export const onSelectPiece = (row, column) => async (dispatch) => {
+export const onSelectSquare = (row, column) => async (dispatch) => {
     gameLogicController.selectSquare(row, column);
 
     dispatch({

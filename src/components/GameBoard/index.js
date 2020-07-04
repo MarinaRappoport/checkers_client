@@ -20,7 +20,7 @@ const isSelectableSquare = (row, column, selectableSquares) => {
     return selectableSquares.filter(([x, y]) => x === row && y === column).size > 0;
 };
 
-const GameBoard = ({ classes, board, selectableSquares, selected, onSelectPiece }) => {
+const GameBoard = ({ classes, board, selectableSquares, selected, onSelectSquare }) => {
     return (
         <table className={classes.board}>
             {board.map((squares, row) => (
@@ -32,7 +32,7 @@ const GameBoard = ({ classes, board, selectableSquares, selected, onSelectPiece 
                                 classes.square, classes[GetSquareColor(row, column)],
                                 { [classes.optionSquare]: isSelectableSquare(row, column, selectableSquares) }
                             )}
-                            onClick={() => onSelectPiece({ row, column })}
+                            onClick={() => onSelectSquare({ row, column })}
                         >
                             <Piece
                                 piece={square}
