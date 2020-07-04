@@ -1,4 +1,4 @@
-import { range, find, filter } from 'lodash';
+import { range, find, filter, times } from 'lodash';
 
 const BLACK = 'black';
 const WHITE = 'white';
@@ -62,9 +62,7 @@ class GameLogicController {
         const board = [];
         for (let i of range(0, 8)) {
             board.push([]);
-            for (let j of range(0, 8)) {
-                board[i].push(null);
-            }
+            times(8, () => board[i].push(null));
         }
         return board;
     }
