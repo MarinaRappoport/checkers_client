@@ -30,18 +30,23 @@ class CheckerGame {
         }
 
         if(this._isSelectableSquare(point)) {
-            // TODO: move to point X
-        }
-        
-        if(this._isCancelingSelected(point)) {
+            this._moveFromTo(this._selectedSquare, point);
+            this._cleanSelectableSquares();
+            this._cleanSelectedSquare();
+        } else if(this._isCancelingSelected(point)) {
             this._cleanSelectableSquares();
             this._cleanSelectedSquare();
         } else if(this._isSquareOfPlayer(point)) {
-            this._setSelectedSquare(point);
-
             const movesFromPoint = this._allMovesFromPoint(point);
             this._setSelectableSquares(movesFromPoint);
+            this._setSelectedSquare(point);
         }
+    };
+
+    _moveFromTo = (currentPoint, targetPoint) => {
+        // TODO: move from current point to target point
+        // this._board[currentPoint[0]][currentPoint[1]] = null;
+        // this._board[targetPoint[0]][targetPoint[1]] = this._playerColor;
     };
 
     _isSquareOfPlayer = (point) => {

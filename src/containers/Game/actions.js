@@ -19,12 +19,6 @@ export const loadGame = (gameData, username) => async (dispatch) => {
 export const onSelectSquare = (row, column) => async (dispatch) => {
     checkerGame.selectSquare(row, column);
 
-    dispatch({
-        type: SET_SELECT_PIECE,
-        payload: checkerGame.getSelectedSquare()
-    });
-    dispatch({
-        type: SET_SELECTABLE_SQUARES,
-        payload: checkerGame.getSelectableSquares()
-    });
+    dispatch({ type: SET_SELECT_PIECE, payload: checkerGame.getSelectedSquare() });
+    dispatch({ type: SET_SELECTABLE_SQUARES, payload: checkerGame.getSelectableSquares() });
 };
