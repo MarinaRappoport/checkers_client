@@ -1,4 +1,4 @@
-import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR } from "./consts";
+import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR, SET_CURRENT_PLAYER_COLOR } from "./consts";
 import CheckerGame from '../../controllers/CheckerGame';
 
 let checkerGame;
@@ -11,6 +11,7 @@ export const loadGame = (gameData, username) => async (dispatch) => {
     checkerGame = new CheckerGame();
     checkerGame.load(gameData, userColor);
 
+    dispatch({ type: SET_CURRENT_PLAYER_COLOR, payload: checkerGame.getCurrentPlayerColor() });
     dispatch({ type: SET_BOARD, payload: checkerGame.getBoard() });
     dispatch({ type: SET_OPPONENT_COLOR, payload: opponentColor });
     dispatch({ type: SET_PLAYER_COLOR, payload: userColor });

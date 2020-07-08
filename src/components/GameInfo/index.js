@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Table, TableBody, TableCell, TableRow, Divider } from '@material-ui/core';
 import PlayerColor from './PlayerColor';
 
-const GameInfo = ({ opponent, player }) => {
+const GameInfo = ({ opponent, player, currentPlayerColor }) => {
     return (
         <Fragment>
             <Table>
@@ -10,6 +10,10 @@ const GameInfo = ({ opponent, player }) => {
                     <TableRow>
                         <TableCell>צבע שחקן</TableCell>
                         <TableCell><PlayerColor color={player.get('color')} /></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>תור השחקן</TableCell>
+                        <TableCell><PlayerColor color={currentPlayerColor} /></TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

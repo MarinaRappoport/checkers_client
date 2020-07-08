@@ -3,3 +3,4 @@ export const SET_SELECT_PIECE = 'Game/SET_SELECT_PIECE';
 export const SET_BOARD = 'Game/SET_BOARD';
 export const SET_PLAYER_COLOR = 'Game/SET_PLAYER_COLOR';
 export const SET_OPPONENT_COLOR = 'Game/SET_OPPONENT_COLOR';
+export const SET_CURRENT_PLAYER_COLOR = 'Game/SET_CURRENT_PLAYER_COLOR';

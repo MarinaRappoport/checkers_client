@@ -20,6 +20,8 @@ class CheckerGame {
 
     getSelectableSquares = () => this._selectableSquares;
 
+    getCurrentPlayerColor = () => this._currentTurn;
+
     getSelectedSquare = () => this._selectedSquare;
 
     selectSquare = (row, column) => {
