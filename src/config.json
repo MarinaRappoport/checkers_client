@@ -6,7 +6,8 @@
         "register": "/auth/register",
         "login": "/auth/login",
         "invitePlayer": "/invite",
-        "acceptPlayer": "/accept"
+        "acceptPlayer": "/accept",
+        "move": "/move"
     },
     "socketListen": {
         "gameInvitation": "/user/queue/invite",

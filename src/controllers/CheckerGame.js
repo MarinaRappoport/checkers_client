@@ -1,10 +1,10 @@
 import {
-    cleanBoard, parsePlayerColor, decreasePosition, isPointInList,
-    comparePoints, compareJsonPoints, preprocessLegalMoves, jsonPointToArray
+    cleanBoard, parsePlayerColor, decreasePosition, isPointInList, increasePosition,
+    comparePoints, compareJsonPoints, preprocessLegalMoves, jsonPointToArray, arrayPointToJson
 } from './CheckerUtils';
 
 class CheckerGame {
-    load = (game, playerColor) => {
+    load = (game, playerColor, playerMoveAction) => {
         // Reinit vars
         this._playerColor = parsePlayerColor(playerColor);
         this._currentTurn = parsePlayerColor(game.currentPlayerColor);
@@ -12,6 +12,7 @@ class CheckerGame {
         this._board = cleanBoard();
         this._selectedSquare = [-1, -1];
         this._selectableSquares = [];
+        this._playerMoveAction = playerMoveAction;
 
         this._loadPieces(game.board.pieces);
     };
@@ -33,6 +34,7 @@ class CheckerGame {
 
         if(this._isSelectableSquare(point)) {
             this._moveFromTo(this._selectedSquare, point);
+
             this._cleanSelectableSquares();
             this._cleanSelectedSquare();
         } else if(this._isCancelingSelected(point)) {
@@ -46,9 +48,9 @@ class CheckerGame {
     };
 
     _moveFromTo = (currentPoint, targetPoint) => {
-        // TODO: move from current point to target point
-        // this._board[currentPoint[0]][currentPoint[1]] = null;
-        // this._board[targetPoint[0]][targetPoint[1]] = this._playerColor;
+        const from = increasePosition(arrayPointToJson(currentPoint));
+        const to = increasePosition(arrayPointToJson(targetPoint));
+        this._playerMoveAction(from, to);
     };
 
     _isSquareOfPlayer = (point) => {

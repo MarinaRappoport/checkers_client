@@ -31,6 +31,13 @@ export const decreasePosition = (pos) => {
     };
 };
 
+export const increasePosition = (pos) => {
+    return {
+        row: pos.row + 1,
+        column: pos.column + 1
+    };
+};
+
 export const comparePoints = (p1, p2) => isEqual(p1, p2);
 
 export const compareJsonPoints = (p1, p2) => {
@@ -39,6 +46,10 @@ export const compareJsonPoints = (p1, p2) => {
 
 export const jsonPointToArray = (point) => {
     return [point.row, point.column];
+};
+
+export const arrayPointToJson = (point) => {
+    return { row: point[0], column: point[1] };
 };
 
 export const isPointInList = (points, point) => {

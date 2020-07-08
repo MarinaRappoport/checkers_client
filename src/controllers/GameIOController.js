@@ -57,6 +57,14 @@ class GameIOController {
         this.sockJSClient.send(config.paths.invitePlayer, data);
     }
 
+    /**
+     * 
+     * @param { from: { row, column }, to: { row, column } } move
+     */
+    move(move) {
+        this.sockJSClient.send(config.paths.move, move);
+    }
+
     acceptPlayer(playerUsername) {
         const data = {
             toUser: playerUsername
