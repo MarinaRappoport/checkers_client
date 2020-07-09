@@ -55,7 +55,7 @@ class CheckerGame {
 
     _isSquareOfPlayer = (point) => {
         const [row, column] = point;
-        return this._board[row][column] === this._playerColor;
+        return this._board[row][column]?.color === this._playerColor;
     }
 
     _isPlayerTurn = () => this._playerColor === this._currentTurn;
@@ -83,7 +83,10 @@ class CheckerGame {
     _loadPieces = (pieces) => {
         for(let piece of pieces) {
             const position = decreasePosition(piece.position);
-            this._board[position.row][position.column] = parsePlayerColor(piece.color);
+            this._board[position.row][position.column] = {
+                color: parsePlayerColor(piece.color),
+                king: piece.king
+            };
         }
     };
 }
