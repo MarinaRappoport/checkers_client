@@ -11,6 +11,6 @@
     },
     "socketListen": {
         "gameInvitation": "/user/queue/invite",
-        "gameStart": "/user/queue/start_game"
+        "gameStart": "/user/queue/game_status"
     }
 }
