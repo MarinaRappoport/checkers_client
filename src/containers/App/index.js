@@ -10,6 +10,7 @@ import Authentication from '../Authentication';
 import Game from '../Game';
 import Notifier from './notifier';
 import Lobby from '../Lobby';
+import Navbar from '../Navbar';
 
 class App extends React.Component {
     componentWillMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
         return (
             <div className={classes.root}>
                 <Notifier />
+                <Navbar />
                 <Router>
                     <Switch>
                         <PrivateRoute

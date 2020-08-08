@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { SET_USER } from './consts';
+import { SET_USER, LOGOUT } from './consts';
 
 const initState = Immutable.fromJS({
     isLogin: false,
@@ -14,6 +14,8 @@ export default function authReducer(state = initState, action) {
                     .set('isLogin', true)
                     .set('user', Immutable.fromJS(action.payload))
             );
+        case LOGOUT:
+            return state.set('isLogin', false).set('user', null);
         default:
             return state;
     }

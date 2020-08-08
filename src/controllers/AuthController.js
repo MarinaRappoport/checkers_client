@@ -5,7 +5,9 @@ class AuthController {
     constructor() {
         this.savePlayer = this.setCredentials.bind(this);
         this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
         this.getCredentials = this.getCredentials.bind(this);
+        this.removeCredentials = this.removeCredentials.bind(this);
         this.setCredentials = this.setCredentials.bind(this);
     }
 
@@ -25,6 +27,10 @@ class AuthController {
         return req.data;
     }
 
+    logout() {
+        this.removeCredentials();
+    }
+
     isCredentialsSaved() {
         const { username, password } = this.getCredentials();
         const hasUsername = !!username;
@@ -42,6 +48,11 @@ class AuthController {
     setCredentials(username, password) {
         localStorage.setItem('username', username);
         localStorage.setItem('password', password);
+    }
+
+    removeCredentials() {
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
     }
 }
 
