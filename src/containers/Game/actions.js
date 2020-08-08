@@ -1,5 +1,6 @@
 import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR, SET_CURRENT_PLAYER_COLOR } from "./consts";
 import CheckerGame from '../../controllers/CheckerGame';
+import * as AppActions from '../App/actions';
 import GameIOController from "../../controllers/GameIOController";
 
 let checkerGame;
@@ -10,7 +11,13 @@ const moveAction = (from, to) => {
 
 export const loadGame = (gameData, username) => async (dispatch) => {
     if(gameData.error) {
-        // TODO: handle error
+        dispatch(AppActions.enqueueSnackbar({
+            message: `התקבלה שגיאה: ${gameData.error}`,
+            options: {
+                key: new Date().getTime() + Math.random(),
+                variant: 'error'
+            },
+        }));
         return;
     }
 
