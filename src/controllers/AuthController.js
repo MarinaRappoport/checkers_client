@@ -27,8 +27,11 @@ class AuthController {
         return req.data;
     }
 
-    logout() {
+    async logout(userId) {
+        const req = await requests.get(`${config.paths.logout}${''+userId}`);
         this.removeCredentials();
+
+        return req.data;
     }
 
     isCredentialsSaved() {

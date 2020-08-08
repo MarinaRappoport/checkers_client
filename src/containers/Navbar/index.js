@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles';
 import * as authActions from '../Authentication/actions';
 
-
 const Navbar = ({ classes }) => {
     const dispatch = useDispatch();
     const isLogin = useSelector(state => state.auth.get('isLogin'));
-    const logout = () => dispatch(authActions.logout());
+    const user = useSelector(state => state.auth.get('user'));
+    const logout = () => dispatch(authActions.logout(user.get('id')));
 
     return (
         <AppBar position="static">
@@ -22,7 +22,10 @@ const Navbar = ({ classes }) => {
                 }
                 {
                     isLogin &&
-                    <Button color="inherit" onClick={logout}>Logout</Button>
+                    <>
+                        <Typography variant="inherit">{user.get('username')}</Typography>
+                        <Button color="inherit" onClick={logout}>Logout</Button>
+                    </>
                 }
             </Toolbar>
         </AppBar>
