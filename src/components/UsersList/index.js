@@ -13,7 +13,7 @@ const iconClassName = (classes, available) => classNames({
 const UsersLists = ({ classes, users, onSelect }) => (
     <List component="nav" aria-labelledby="nested-list-subheader">
         {users.map((user, index) => (
-            <ListItem button onClick={() => onSelect(user.toJS())} className={classes.lobbyItem} key={index}>
+            <ListItem disabled={!user.get('available')} button onClick={() => onSelect(user.toJS())} className={classes.lobbyItem} key={index}>
                 <ListItemIcon>
                     <Person className={iconClassName(classes, user.get('available'))} />
                 </ListItemIcon>
