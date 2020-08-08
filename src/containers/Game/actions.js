@@ -9,6 +9,11 @@ const moveAction = (from, to) => {
 };
 
 export const loadGame = (gameData, username) => async (dispatch) => {
+    if(gameData.error) {
+        // TODO: handle error
+        return;
+    }
+
     const { black } = gameData;
     let userColor = black.name === username ? 'BLACK' : 'WHITE';
     let opponentColor = userColor === 'WHITE' ? 'BLACK' : 'WHITE';
