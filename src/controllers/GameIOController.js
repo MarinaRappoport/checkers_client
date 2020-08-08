@@ -33,6 +33,10 @@ class GameIOController {
         this.sockJSClient.connect(config.socketServer, this.player.username, subscribes);
     }
 
+    disconnect() {
+        this.sockJSClient.disconnect();
+    }
+
     handleLink(link) {
         if(!(link in this.bindedActions)) { // If not found link's binded function
             return () => console.log(`Recived message from ${link}`);

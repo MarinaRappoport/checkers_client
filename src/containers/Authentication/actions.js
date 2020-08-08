@@ -9,6 +9,7 @@ export const setUser = (user) => async (dispatch) => {
 };
 
 export const logout = (userid) => async (dispatch) => {
+    GameIOController.disconnect();
     await AuthController.logout(userid);
     
     dispatch({ type: LOGOUT });
