@@ -6,6 +6,11 @@ class UsersController {
         const req = await requests.get(config.paths.allPlayers);
         return req.data;
     }
+
+    async get_current_game(userName) {
+        const req = await requests.get(config.paths.currentGame+userName);
+        return req.data;
+    }
 }
 
 export default new UsersController();

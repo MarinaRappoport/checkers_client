@@ -3,6 +3,7 @@
     "socketServer": "http://localhost:8080/websocket",
     "paths": {
         "logout": "/logout/",
+        "currentGame": "/game/",
         "allPlayers": "/players",
         "register": "/auth/register",
         "login": "/auth/login",

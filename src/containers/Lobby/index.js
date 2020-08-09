@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UsersLists from '../../components/UsersList';
 import GameIOController from '../../controllers/GameIOController';
+import UsersController from '../../controllers/UsersController';
 import * as actions from './actions';
 import * as AppActions from '../App/actions';
 import * as GameActions from '../Game/actions';
@@ -18,6 +19,7 @@ class Lobby extends React.Component {
         this.onSelectUser = this.onSelectUser.bind(this);
         this.recivedInvitation = this.recivedInvitation.bind(this);
         this.gameStart = this.gameStart.bind(this);
+        this.checkIfAlreadyInGame = this.checkIfAlreadyInGame.bind(this);
     }
 
     componentWillMount() {
@@ -27,6 +29,15 @@ class Lobby extends React.Component {
     componentDidMount() {
         GameIOController.bindAction(config.socketListen.gameInvitation, this.recivedInvitation);
         GameIOController.bindAction(config.socketListen.gameStart, this.gameStart);
+        this.checkIfAlreadyInGame();
+    }
+
+    async checkIfAlreadyInGame() {
+        const username = this.props.loggedUser.get('username');
+        UsersController.get_current_game(username)
+            .then((game) => {
+                this.gameStart(game);
+            });
     }
 
     gameStart(game) {
