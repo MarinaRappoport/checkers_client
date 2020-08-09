@@ -69,6 +69,10 @@ class GameIOController {
         this.sockJSClient.send(config.paths.move, move);
     }
 
+    surrend() {
+        this.sockJSClient.send(config.paths.surrender);
+    }
+
     acceptPlayer(playerUsername) {
         const data = {
             toUser: playerUsername

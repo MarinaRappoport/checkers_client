@@ -9,6 +9,8 @@ const moveAction = (from, to) => {
     GameIOController.move({from, to});
 };
 
+export const surrend = () => GameIOController.surrend();
+
 export const loadGame = (gameData, username) => async (dispatch) => {
     if(gameData.error) {
         dispatch(AppActions.enqueueSnackbar({

@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react';
-import { Table, TableBody, TableCell, TableRow, Divider } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableRow, Divider, Button } from '@material-ui/core';
 import PlayerColor from './PlayerColor';
 
-const GameInfo = ({ opponent, player, currentPlayerColor }) => {
+const GameInfo = ({ opponent, player, currentPlayerColor, surrend }) => {
+    const onSurrend = () => {
+        if(window.confirm('בטוח אתה רוצה להיכנע?')) {
+            surrend();
+        }
+    };
+
     return (
         <Fragment>
             <Table>
@@ -27,6 +33,16 @@ const GameInfo = ({ opponent, player, currentPlayerColor }) => {
                     <TableRow>
                         <TableCell>צבע יריב</TableCell>
                         <TableCell><PlayerColor color={opponent.get('color')} /></TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+            <Divider />
+            <Table>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>
+                            <Button variant="contained" onClick={onSurrend} color="primary">היכנע</Button>
+                        </TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

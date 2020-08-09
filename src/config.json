@@ -9,6 +9,7 @@
         "login": "/auth/login",
         "invitePlayer": "/invite",
         "acceptPlayer": "/accept",
+        "surrender": "/surrender",
         "move": "/move"
     },
     "socketListen": {

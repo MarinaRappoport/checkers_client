@@ -16,20 +16,24 @@ const Game = ({ classes }) => {
     const currentPlayer = useSelector(state => state.game.get('currentPlayer'));
     const player = useSelector(state => state.game.get('player'));
     const onSelectSquare = ({row, column}) => dispatch(actions.onSelectSquare(row, column));
+    const surrend = () => actions.surrend();
 
     return (
         <Grid container spacing={0}>
             <Grid item xs={3} className={classes.game_sidebar}>
                 <h1>Game</h1>
                 
-                <GameInfo opponent={opponent} player={player} currentPlayerColor={currentPlayer.get('color')} />
+                <GameInfo
+                    opponent={opponent} player={player}
+                    surrend={surrend} currentPlayerColor={currentPlayer.get('color')}
+                />
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={6}>
                 <div className={classes.gameContainer}>
                     <GameBoard
                         board={board} selectableSquares={selectableSquares} selected={selected}
-                        onSelectSquare={onSelectSquare}
+                        onSelectSquare={onSelectSquare} דור
                     />
                 </div>
             </Grid>
