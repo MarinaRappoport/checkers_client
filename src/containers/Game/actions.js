@@ -1,4 +1,4 @@
-import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR, SET_CURRENT_PLAYER_COLOR } from "./consts";
+import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR, SET_CURRENT_PLAYER_COLOR, SET_IS_GAME_OVER } from "./consts";
 import CheckerGame from '../../controllers/CheckerGame';
 import * as AppActions from '../App/actions';
 import GameIOController from "../../controllers/GameIOController";
@@ -34,6 +34,7 @@ export const loadGame = (gameData, username) => async (dispatch) => {
     dispatch({ type: SET_BOARD, payload: checkerGame.getBoard() });
     dispatch({ type: SET_OPPONENT_COLOR, payload: opponentColor });
     dispatch({ type: SET_PLAYER_COLOR, payload: userColor });
+    dispatch({ type: SET_IS_GAME_OVER, payload: checkerGame.isGameOver() });
 };
 
 export const onSelectSquare = (row, column) => async (dispatch) => {

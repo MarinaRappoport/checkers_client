@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_PLAYER_COLOR, SET_OPPONENT_COLOR, SET_CURRENT_PLAYER_COLOR } from './consts';
+import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_PLAYER_COLOR, SET_OPPONENT_COLOR, SET_CURRENT_PLAYER_COLOR, SET_IS_GAME_OVER } from './consts';
 
 const initState = fromJS({
     board: [],
@@ -13,6 +13,7 @@ const initState = fromJS({
     currentPlayer: {
         color: ''
     },
+    isGameOver: false,
     selectableSquares: [],
     selected: []
 });
@@ -31,6 +32,8 @@ export default function gameReducer(state = initState, action) {
             return state.setIn(['opponent', 'color'], action.payload);
         case SET_CURRENT_PLAYER_COLOR:
             return state.setIn(['currentPlayer', 'color'], action.payload);
+        case SET_IS_GAME_OVER:
+            return state.set('isGameOver', action.payload);
         default:
             return state;
     }

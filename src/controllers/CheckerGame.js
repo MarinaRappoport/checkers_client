@@ -6,6 +6,8 @@ import {
 class CheckerGame {
     load = (game, playerColor, playerMoveAction) => {
         // Reinit vars
+        this._isGameOver = game.gameOver;
+        this._winnerColor = game.winnerColor;
         this._playerColor = parsePlayerColor(playerColor);
         this._currentTurn = parsePlayerColor(game.currentPlayerColor);
         this._legalMoves = preprocessLegalMoves(game.legalMovesCollection);
@@ -18,6 +20,10 @@ class CheckerGame {
     };
 
     getBoard = () => this._board;
+
+    getWinnerColor = () => this._winnerColor;
+
+    isGameOver = () => this._isGameOver;
 
     getSelectableSquares = () => this._selectableSquares;
 
