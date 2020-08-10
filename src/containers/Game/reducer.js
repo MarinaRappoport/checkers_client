@@ -4,7 +4,7 @@ import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_PLAYER_COLOR, 
 const initState = fromJS({
     board: [],
     opponent: {
-        username: 'David',
+        username: '',
         color: '',
     },
     player: {
