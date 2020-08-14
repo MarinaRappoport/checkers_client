@@ -1,4 +1,4 @@
-import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR, SET_CURRENT_PLAYER_COLOR, SET_IS_GAME_OVER } from "./consts";
+import { SET_SELECT_PIECE, SET_BOARD, SET_SELECTABLE_SQUARES, SET_OPPONENT_COLOR, SET_PLAYER_COLOR, SET_CURRENT_PLAYER_COLOR, SET_IS_GAME_OVER, SET_OPPONENT_NICKNAME } from "./consts";
 import CheckerGame from '../../controllers/CheckerGame';
 import * as AppActions from '../App/actions';
 import GameIOController from "../../controllers/GameIOController";
@@ -10,6 +10,15 @@ const moveAction = (from, to) => {
 };
 
 export const surrend = () => GameIOController.surrend();
+
+function getOpponentUsername(gameData, opponentColor) {
+    opponentColor = opponentColor.toLowerCase();
+    return gameData[opponentColor].name;
+}
+
+function getOppositeColor(color) {
+    return color === 'WHITE' ? 'BLACK' : 'WHITE';
+}
 
 export const loadGame = (gameData, username) => async (dispatch) => {
     if(gameData.error) {
@@ -24,8 +33,9 @@ export const loadGame = (gameData, username) => async (dispatch) => {
     }
 
     const { black } = gameData;
-    let userColor = black.name === username ? 'BLACK' : 'WHITE';
-    let opponentColor = userColor === 'WHITE' ? 'BLACK' : 'WHITE';
+    const userColor = black.name === username ? 'BLACK' : 'WHITE';
+    const opponentColor = getOppositeColor(userColor);
+    const oponnentUsername = getOpponentUsername(gameData, opponentColor);
 
     checkerGame = new CheckerGame();
     checkerGame.load(gameData, userColor, moveAction);
@@ -35,6 +45,7 @@ export const loadGame = (gameData, username) => async (dispatch) => {
     dispatch({ type: SET_OPPONENT_COLOR, payload: opponentColor });
     dispatch({ type: SET_PLAYER_COLOR, payload: userColor });
     dispatch({ type: SET_IS_GAME_OVER, payload: checkerGame.isGameOver() });
+    dispatch({ type: SET_OPPONENT_NICKNAME, payload: oponnentUsername });
 };
 
 export const onSelectSquare = (row, column) => async (dispatch) => {
