@@ -18,13 +18,14 @@ const Game = ({ classes, history }) => {
     const isGameOver = useSelector(state => state.game.get('isGameOver'));
     const currentPlayer = useSelector(state => state.game.get('currentPlayer'));
     const player = useSelector(state => state.game.get('player'));
+    const winnerUsername = useSelector(state => state.game.get('winnerUsername'));
     const onSelectSquare = ({row, column}) => dispatch(actions.onSelectSquare(row, column));
     const surrend = () => actions.surrend();
     const goToLobby = () => history.push('/');
 
     return (
         <Grid container spacing={0}>
-            <GameOver open={isGameOver} status={'LOST'} onClose={goToLobby} />
+            <GameOver open={isGameOver} winnerUsername={winnerUsername} onClose={goToLobby} />
             <Grid item xs={3} className={classes.game_sidebar}>
                 <h1>Game</h1>
                 

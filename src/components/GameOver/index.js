@@ -15,15 +15,15 @@ const styles = (theme) => ({
     },
 });
 
-const GameOver = ({ classes, status, open, onClose }) => {
-    const statusMessage = (status === 'LOSE') ? 'Lost' : 'Won';
+const GameOver = ({ classes, open, winnerUsername, onClose }) => {
     return (
         <Modal open={open} className={classes.modal} onClose={onClose}>
             <div className={classes.paper}>
                 <h2 id="transition-modal-title">Game over</h2>
                 <p id="transition-modal-description">
-                    You've {statusMessage}
+                    The winner is {winnerUsername}
                 </p>
+                <p><button onClick={onClose}>Exit</button></p>
             </div>
         </Modal>
     );
