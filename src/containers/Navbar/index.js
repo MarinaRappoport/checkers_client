@@ -17,10 +17,6 @@ const Navbar = ({ classes }) => {
                     {'Checkers'}
                 </Typography>
                 {
-                    !isLogin &&
-                    <Button color="inherit">Login</Button>
-                }
-                {
                     isLogin &&
                     <>
                         <Typography variant="inherit">{user.get('username')}</Typography>
