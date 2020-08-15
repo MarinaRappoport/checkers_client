@@ -1,44 +1,37 @@
 import React from 'react';
-import { Grid, Table, TableHead, TableRow, TableCell, TableBody, Card } from '@material-ui/core';
+import moment from 'moment';
+import { Grid, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 import PlayerColor from '../GameInfo/PlayerColor';
 
-function HistoryItem() {
+const getPlayerInfo = (game, color) => `${game.getIn([color,'username'])} (${game.getIn([color,'score'])})`;
+const gameDate = (game) => moment(game.get('timestamp')).format("DD/MM/YYYY HH:mm:ss");
+
+function HistoryItem({ games }) {
     return (
         <Grid container justify="center" alignContent="center">
             <Grid item>
-                <Card>
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell>Player 1</TableCell>
-                            <TableCell>Player 2</TableCell>
+                            <TableCell>ID</TableCell>
+                            <TableCell>White</TableCell>
+                            <TableCell>Black</TableCell>
+                            <TableCell>Winner</TableCell>
+                            <TableCell>Date</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>Username</TableCell>
-                            <TableCell>AAA</TableCell>
-                            <TableCell>BBB</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Color</TableCell>
-                            <TableCell><PlayerColor color="white" /></TableCell>
-                            <TableCell><PlayerColor color="black" /></TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Points</TableCell>
-                            <TableCell>120</TableCell>
-                            <TableCell>130</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Won</TableCell>
-                            <TableCell>Lost</TableCell>
-                        </TableRow>
+                        {games.map(game => (    
+                            <TableRow key={game.get('gameId')}>
+                                <TableCell>{game.get('gameId')}</TableCell>
+                                <TableCell>{getPlayerInfo(game, 'white')}</TableCell>
+                                <TableCell>{getPlayerInfo(game, 'black')}</TableCell>
+                                <TableCell><PlayerColor color={game.get('winner')} /></TableCell>
+                                <TableCell>{gameDate(game)}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
-                </Card>
             </Grid>
         </Grid>
     );
