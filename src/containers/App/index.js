@@ -11,6 +11,7 @@ import Game from '../Game';
 import Notifier from './notifier';
 import Lobby from '../Lobby';
 import Navbar from '../Navbar';
+import History from '../History';
 
 class App extends React.Component {
     componentWillMount() {
@@ -27,14 +28,15 @@ class App extends React.Component {
         return (
             <div className={classes.root}>
                 <Notifier />
-                <Navbar />
                 <Router>
+                    <Navbar />
                     <Switch>
                         <PrivateRoute
                             path="/auth" component={Authentication}
                             config={{ redirectUrl: '/', redirected: isLogin }}
                         />
                         <PrivateRoute path="/game" component={Game} config={loginRouteConfig} />
+                        <PrivateRoute path="/history" component={History} config={loginRouteConfig} />
                         <PrivateRoute path="/" component={Lobby} config={loginRouteConfig} />
                     </Switch>
                 </Router>

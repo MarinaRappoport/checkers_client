@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles, AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles';
@@ -20,6 +21,7 @@ const Navbar = ({ classes }) => {
                     isLogin &&
                     <>
                         <Typography variant="inherit">{user.get('username')}</Typography>
+                        <Button color="inherit" component={Link} to='/history'>History</Button>
                         <Button color="inherit" onClick={logout}>Logout</Button>
                     </>
                 }
