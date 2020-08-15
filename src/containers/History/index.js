@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 function History({ classes }) {
     const dispatch = useDispatch();
     const games = useSelector(state => state.history.get('games'));
+    const userId = useSelector(state => state.auth.getIn(['user', 'id']));
 
     useEffect(() => {
-        dispatch(actions.fetchHistoryGames());
-    }, [dispatch]);
+        dispatch(actions.fetchHistoryGames(userId));
+    }, [dispatch, userId]);
 
     return (
         <Grid container alignContent="center" justify="center">

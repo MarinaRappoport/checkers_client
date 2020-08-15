@@ -11,6 +11,11 @@ class UsersController {
         const req = await requests.get(config.paths.currentGame+userName);
         return req.data;
     }
+
+    async get_history(userId) {
+        const req = await requests.get(config.paths.getHistory+userId);
+        return req.data;
+    }
 }
 
 export default new UsersController();
