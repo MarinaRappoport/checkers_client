@@ -9,6 +9,8 @@ const defaultStyle = {
     textAlign: 'center'
 };
 
+const kingCrownStyle = { color: '#b58500' };
+
 export default function Piece({ piece, isSelected, onSelect }) {
     if (piece === null)
         return null;
@@ -21,6 +23,6 @@ export default function Piece({ piece, isSelected, onSelect }) {
     style.border = isSelected ? '3px solid red' : null;
 
     return <div style={style} onClick={onSelect}>
-        {isKing && <AddCircleOutlineIcon />}
+        {isKing && <AddCircleOutlineIcon style={kingCrownStyle} />}
     </div>;
 };
