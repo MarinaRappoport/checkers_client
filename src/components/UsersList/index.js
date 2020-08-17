@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { Person } from '@material-ui/icons';
 import styles from './styles';
 
+const getPlayerInfo = (user) => `${user.get('username')} (${user.get('score')})`;
 
 const iconClassName = (classes, available) => classNames({
     [classes.iconAvailable]: available,
@@ -17,7 +18,7 @@ const UsersLists = ({ classes, users, onSelect }) => (
                 <ListItemIcon>
                     <Person className={iconClassName(classes, user.get('available'))} />
                 </ListItemIcon>
-                <ListItemText primary={user.get('username')} />
+                <ListItemText primary={getPlayerInfo(user)} />
             </ListItem>
         ))}
     </List>
