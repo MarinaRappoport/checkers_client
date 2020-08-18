@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Grid, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 import PlayerColor from '../GameInfo/PlayerColor';
 
-const getPlayerInfo = (game, color) => `${game.getIn([color,'username'])} (${game.getIn([color,'score'])})`;
+const getPlayerInfo = (game, color) => `${game.getIn([color,'username'])}`;
 const gameDate = (game) => moment(game.get('timestamp')).format("DD/MM/YYYY HH:mm:ss");
 
 function HistoryItem({ games }) {
@@ -13,7 +13,7 @@ function HistoryItem({ games }) {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
+                            <TableCell>Score in game</TableCell>
                             <TableCell>White</TableCell>
                             <TableCell>Black</TableCell>
                             <TableCell>Winner</TableCell>
@@ -23,7 +23,7 @@ function HistoryItem({ games }) {
                     <TableBody>
                         {games.map(game => (    
                             <TableRow key={game.get('gameId')}>
-                                <TableCell>{game.get('gameId')}</TableCell>
+                                <TableCell>{game.get('score')}</TableCell>
                                 <TableCell>{getPlayerInfo(game, 'white')}</TableCell>
                                 <TableCell>{getPlayerInfo(game, 'black')}</TableCell>
                                 <TableCell><PlayerColor color={game.get('winner')} /></TableCell>
