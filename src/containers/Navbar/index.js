@@ -22,6 +22,7 @@ const Navbar = ({ classes }) => {
                     <>
                         <Typography variant="inherit">{user.get('username')}</Typography>
                         <Button color="inherit" component={Link} to='/history'>History</Button>
+                        <Button color="inherit" component={Link} to='/'>Lobby</Button>
                         <Button color="inherit" onClick={logout}>Logout</Button>
                     </>
                 }
